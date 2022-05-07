@@ -1,9 +1,9 @@
 # import the pygame module, so you can use it
 import pygame
 
+from game_layout import pinta_casillas
+from game_layout import *
 
-WIDTH = 800
-HEIGHT = 800
 
 # define a main function
 def main():
@@ -16,31 +16,9 @@ def main():
     pygame.display.set_caption("minimal program")
 
     # create a surface on screen that has the size of 240 x 180
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
-    control_color = -1
-    for fila in range(8):
-        control_color *= -1  #  control_color = control_color * -1
-        for columna in range(8):
-            if control_color == 1:
-                casilla = pygame.Rect(
-                    fila * (WIDTH // 8),
-                    columna * (HEIGHT // 8),
-                    WIDTH // 8,
-                    HEIGHT // 8,
-                )
-                pygame.draw.rect(screen, (255, 255, 255), casilla)
-
-                control_color *= -1
-            elif control_color == -1:
-                casilla = pygame.Rect(
-                    fila * (WIDTH // 8),
-                    columna * (HEIGHT // 8),
-                    WIDTH // 8,
-                    HEIGHT // 8,
-                )
-                pygame.draw.rect(screen, (0, 0, 0), casilla)
-                control_color *= -1
+    screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
+    pinta_casillas(screen)
+    coloca_piezas(screen)
 
     pygame.display.flip()
 
